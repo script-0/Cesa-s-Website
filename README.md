@@ -1,2 +1,2 @@
-# Cesa-s-Website
-Website for CESA . It use XAuth services
+# XLogin - CESA's-Website
+Login interface for CESA's Website . It use XAuth services
