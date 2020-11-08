@@ -57,7 +57,9 @@
 
  .modal-footer {
    padding: 2px 16px;
-   background-color: #db1946;
+   background-color: #b91d73;
+   background: -webkit-linear-gradient(to right, #f953c6, #b91d73);
+   background: linear-gradient(to right, #f953c6, #b91d73);
    border-radius: 0 0 5px 5px;
    color: white;
    text-align: center;
@@ -66,12 +68,13 @@
 
  .modal-footer:hover{
    background-color: #4481eb;
+   background-image: linear-gradient(-45deg, #4481eb 0%, #04befe 100%);
  }
 
  /* The Close Button */
 
  #modal-close {
-   color: #db1946;
+   color: #b91d73;
    float: right;
    font-size: 30px;
    font-weight: bold;
