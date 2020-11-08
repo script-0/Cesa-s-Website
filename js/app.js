@@ -57,27 +57,28 @@ sign_up.addEventListener("click", () => {
   }
 
   if(!matriculePattern.test(matricule)){
-    showError("<strong>"+name+"</strong>,Matricule incorrect ( Ex : 17P123 )","Dismiss");
+    showError("<strong>"+name.split(" ")[0]+"</strong>,Matricule incorrect (Ex: 17P123)","Dismiss");
     return;
   }
 
   if(department =="Select your Department"){
-    showError("<strong>"+name+"</strong> Please select your Department","Dismiss");
+    showError("<strong>"+name.split(" ")[0]+"</strong>,Please select your Department","Dismiss");
     return;
   }
 
   if(level == "Select your level"){
-    showError("<strong>"+name+"</strong> Please select your Level","Dismiss");
+    showError("<strong>"+name.split(" ")[0]+"</strong>,Please select your Level","Dismiss");
    return;
   }
 
   if(document.getElementById("email").checkValidity()){
     email = document.getElementById("email").value;
   }else{
-    showError("<strong>"+name+"</strong>, Email incorrect (Ex: bekolle@gmail.com )","Dismiss");
+    showError("<strong>"+name.split(" ")[0]+"</strong>,Email incorrect (Ex: bekolle@gmail.com)","Dismiss");
     return;
   }
 
+  showWait("Nous creons votre compte ...");
   let password = document.getElementById("password").value;
 
   //compute hash of password (using SHA3 Algorithm)
@@ -103,6 +104,8 @@ sign_up.addEventListener("click", () => {
     if (xhr.status !== 200) {
       // When XAuth service unavailable.
       console.log("Authentification service unavailabe")
+      initModal()
+      showError("Authentification service unavailabe.<br> We are resolving this. Try again later","Dismiss");
       return;
     }
     // 
@@ -121,6 +124,7 @@ sign_in.addEventListener("click", () => {
     showError("Matricule incorrect ( Ex : 17P123 )","Dismiss");
     return;
   }
+  showWait("Nous verifions votre compte ...");
   let password = document.getElementById("loginPassword").value;
   
   //compute hash of password (using SHA3 Algorithm)
@@ -141,8 +145,9 @@ sign_in.addEventListener("click", () => {
   xhr.onload = function () {
     if (xhr.status !== 200) {
       // When XAuth service unavailable.
-      console.log("Authentification service unavailabe")
-      showError("Authentification service unavailabe","Try Again");
+      console.log("Authentification service unavailabe");
+      initModal();
+      showError("Authentification service unavailabe.<br> We are resolving this. Try again later","Dismiss");
       return;
     }
     // 
