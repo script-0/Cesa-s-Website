@@ -57,24 +57,24 @@ sign_up.addEventListener("click", () => {
   }
 
   if(!matriculePattern.test(matricule)){
-    showError("<strong>"+name.split(" ")[0]+"</strong>,Matricule incorrect (Ex: 17P123)","Dismiss");
+    showError("<strong>"+name.split(" ")[0]+"</strong>, Matricule invalid (Ex: 17P123)","Dismiss");
     return;
   }
 
   if(department =="Select your Department"){
-    showError("<strong>"+name.split(" ")[0]+"</strong>,Please select your Department","Dismiss");
+    showError("<strong>"+name.split(" ")[0]+"</strong>, Please select your Department","Dismiss");
     return;
   }
 
   if(level == "Select your level"){
-    showError("<strong>"+name.split(" ")[0]+"</strong>,Please select your Level","Dismiss");
+    showError("<strong>"+name.split(" ")[0]+"</strong>, Please select your Level","Dismiss");
    return;
   }
 
   if(document.getElementById("email").checkValidity()){
     email = document.getElementById("email").value;
   }else{
-    showError("<strong>"+name.split(" ")[0]+"</strong>,Email incorrect (Ex: bekolle@gmail.com)","Dismiss");
+    showError("<strong>"+name.split(" ")[0]+"</strong>, Email invalid (Ex: bekolle@gmail.com)","Dismiss");
     return;
   }
 
@@ -98,7 +98,7 @@ sign_up.addEventListener("click", () => {
     }
 
   var xhr = new XMLHttpRequest();
-  xhr.open('POST', 'http://127.0.0.1:81/XApp/XAuth/authentification/authentification.php', true);
+  xhr.open('POST', '../XAuth/authentification/authentification.php', true);
   xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
   xhr.onload = function () {
     if (xhr.status !== 200) {
@@ -109,6 +109,12 @@ sign_up.addEventListener("click", () => {
       return;
     }
     // 
+    let errorPos = this.responseText.indexOf("[Error]:");
+    console.log("Found Error pos = "+errorPos);
+    if(errorPos>= 0){
+      showError(this.responseText.substring(errorPos + "[Error]:".length),"Reessayer");
+    }
+    
     console.log(this.responseText);
     //Enregistrement d'un cookie
     document.cookie="matricule:"+matricule;
@@ -140,7 +146,7 @@ sign_in.addEventListener("click", () => {
     }
 
   var xhr = new XMLHttpRequest();
-  xhr.open('POST', 'http://127.0.0.1:81/XApp/XAuth/authentification/authentification.php', true);
+  xhr.open('POST', '../XAuth/authentification/authentification.php', true);
   xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
   xhr.onload = function () {
     if (xhr.status !== 200) {
@@ -150,7 +156,12 @@ sign_in.addEventListener("click", () => {
       showError("Authentification service unavailabe.<br> We are resolving this. Try again later","Dismiss");
       return;
     }
-    // 
+    //
+    let errorPos = this.responseText.indexOf("[Error]:");
+    console.log("Found Error pos = "+errorPos);
+    if(errorPos>= 0){
+      showError(this.responseText.substring(errorPos + "[Error]:".length),"Reessayer");
+    }
     console.log(this.responseText);
   }
   xhr.send(getReadyToSend(params));
