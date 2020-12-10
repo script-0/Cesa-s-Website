@@ -10,37 +10,17 @@ let matriculePattern = /[1-9][1-9]P[1-9][1-9][1-9]/i;
 let emailPattern = /([A-Z]|[a-z]|[0-9])+@([A-Z]|[a-z]|[0-9])+.([A-Z]|[a-z]|[0-9])+/;
 
 sign_up_btn.addEventListener("click", () => {
-  container.classList.add("sign-up-mode");
-  /*clearInterval(timer);
-   timer = setInterval(()=>{
-      if(i1>=l1){
-        signinText.innerHTML ="";
-        i1=0
-        return;
-      }
-    signinText.innerHTML +=sign_in_text[i1];
-    i1 +=1;
-   }, 130);
-    i2=l2;*/
+  container.classList.add("sign-up-mode");  
 });
 
 sign_in_btn.addEventListener("click", () => {
   container.classList.remove("sign-up-mode");
-  /*clearInterval(timer);
-  timer = setInterval(()=>{
-    if(i2>=l2){
-      signupText.innerHTML ="";
-      i2=0
-      return;
-    }
-  signupText.innerHTML +=sign_up_text[i2];
-  i2 +=1;
-  }, 130);*/
 });
 
 sign_up.addEventListener("click", () => {
   //Retrieve client's informations
   let matricule = document.getElementById("matricule").value;
+  
   matricule = matricule.toUpperCase();
 
   let name = document.getElementById("name").value;

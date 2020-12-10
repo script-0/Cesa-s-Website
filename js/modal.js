@@ -25,10 +25,10 @@ hideModalListener = function(event) {
 }
 
 showError = function(main,footer){
-    initModal();
-    document.getElementById("modal-body-text").innerHTML = main;
-    document.getElementById("modal-footer-text").innerHTML = footer;
-    modal.style.display="block";
+  initModal();
+  document.getElementById("modal-body-text").innerHTML = main;
+  document.getElementById("modal-footer-text").innerHTML = footer;
+  modal.style.display="block";
 }
 
 showWait = function (description){  
