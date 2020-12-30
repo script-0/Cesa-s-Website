@@ -6,7 +6,7 @@ const sign_in = document.querySelector("#signin");
 const sign_up = document.querySelector("#signup");
 
 
-let matriculePattern = /[1-9][1-9]P[1-9][1-9][1-9]/i;
+let matriculePattern = /[1-9][0-9]P[0-9][0-9][0-9]/i;
 let emailPattern = /([A-Z]|[a-z]|[0-9])+@([A-Z]|[a-z]|[0-9])+.([A-Z]|[a-z]|[0-9])+/;
 
 sign_up_btn.addEventListener("click", () => {
